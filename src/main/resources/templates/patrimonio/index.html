@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>Sos Desafio</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="container my-2">
+        <a th:href="@{/patrimonios/create}" class="btn btn-primary btn-sm mb-3">Incluir Patrimonio</a><br>
+        <a th:href="@{/marcas/create}" class="btn btn-primary btn-sm mb-3">Incluir Marca</a><br>
+        <a th:href="@{/marcas}">Lista de Marcas</a>
+
+
+        <table class="table table-hover table-responsive-xl">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Nº Tombo</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patrimonio : ${patrimonios}">
+                <td th:text="${patrimonio.nome}"></td>
+                <td th:text="${patrimonio.descricao}"></td>
+                <td th:text="${patrimonio.marcaId}"></td>
+                <td th:text="${patrimonio.numTombo}"></td>
+                <td>
+                    <a th:href="@{/patrimonio/{id}(id=${patrimonio.id})}"
+                       class="fa-regular fa-pen-to-square icon-dark"></a>
+
+                    <a th:href="@{/patrimonio/delete/{id}(id=${patrimonio.id})}"
+                       class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

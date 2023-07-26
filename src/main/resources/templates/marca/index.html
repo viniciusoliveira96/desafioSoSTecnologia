@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>Sos Desafio</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+<div class="container my-2">
+    <a th:href="@{/marcas/create}" class="btn btn-primary btn-sm mb-3">Incluir Marca</a><br>
+    <a th:href="@{/patrimonios/create}" class="btn btn-primary btn-sm mb-3">Incluir Patrimonio</a><br>
+    <a th:href="@{/patrimonios}">Lista de patrimonios</a>
+
+    <table class="table table-hover table-responsive-xl">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="marca : ${marcas}">
+            <td th:text="${marca.id}"></td>
+            <td th:text="${marca.nome}"></td>
+            <td>
+                <a th:href="@{/marca/{id}(id=${marca.id})}"
+                   class="fa-regular fa-pen-to-square icon-dark"></a>
+
+                <a th:href="@{/marca/delete/{id}(id=${marca.id})}"
+                   class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

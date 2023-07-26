@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>Sos Desafio</title>
+</head>
+<body>
+<header th:insert="fragments/geral.html :: header"> </header>
+<div class="container my-2">
+    <h2>Criar/Editar Marca</h2>
+    <form action="#" th:action="@{/marcas/create}" th:object="${marca}" method="POST">
+        <input type="hidden" id="id" th:field="*{id}">
+
+        <input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">Salvar</button>
+    </form>
+    <hr>
+    <a th:href="@{/marcas}">Retornar para a lista de marcas</a>
+</div>
+</body>
+</html>
