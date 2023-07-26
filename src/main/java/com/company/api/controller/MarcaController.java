@@ -4,11 +4,11 @@ import com.company.api.model.Marca;
 import com.company.api.model.Patrimonio;
 import com.company.api.service.MarcaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @Controller
@@ -93,6 +93,9 @@ public class MarcaController {
         return "marca/patrimonios";
     }
 
-
-
+    @GetMapping("/createMarcasPdf")
+    public String getCreatePdfFileService() throws FileNotFoundException {
+        service.createPdfMarcas();
+        return "redirect:/marcas";
+    }
 }

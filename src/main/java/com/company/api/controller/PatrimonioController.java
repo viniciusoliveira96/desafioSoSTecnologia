@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @Controller
@@ -52,5 +53,10 @@ public class PatrimonioController {
         model.addAttribute("patrimonios", patrimonios);
         return "patrimonio/index";
     }
-    //https://www.youtube.com/watch?v=Mbjkccg6J1Q
+
+    @GetMapping("/createPatrimoniosPdf")
+    public String getCreatePdfFileService() throws FileNotFoundException {
+        service.createPdfPatrimonios();
+        return "redirect:/patrimonios";
+    }
 }
