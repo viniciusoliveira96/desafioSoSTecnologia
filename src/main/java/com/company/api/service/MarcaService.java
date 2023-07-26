@@ -3,6 +3,7 @@ package com.company.api.service;
 import com.company.api.model.Marca;
 import com.company.api.model.Patrimonio;
 import com.company.api.repositoy.MarcaRepository;
+import com.company.api.repositoy.PatrimonioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class MarcaService {
     private static final Map<Long, Patrimonio> patrimonios = new HashMap<>();
     @Autowired
     private MarcaRepository marcaRepository;
+
+    @Autowired
+    private PatrimonioRepository patrimonioRepository;
 
     public Marca created(Marca marca){;
         marcaRepository.save(marca);
@@ -43,10 +47,7 @@ public class MarcaService {
     }
 
     public List<Patrimonio> getPatriminiosOfMarca(Long marcaId){
-        return new ArrayList<>(patrimonios.values().
-                stream()
-                .filter(patrimonio -> patrimonio.getMarcaId().equals(marcaId))
-                .collect(Collectors.toList()));
+        return new ArrayList<>(patrimonioRepository.findByMarcaId(marcaId));
     }
 }
 

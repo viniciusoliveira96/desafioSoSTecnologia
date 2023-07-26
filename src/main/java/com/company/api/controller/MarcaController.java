@@ -86,6 +86,13 @@ public class MarcaController {
         return "marca/index";
     }
 
+    @GetMapping("/marca/{marcaId}/patrimonios")
+    public String getPatriminiosOfMarca(Model model, @PathVariable("marcaId") Long marcaId){
+        List<Patrimonio> patrimonios = service.getPatriminiosOfMarca(marcaId);
+        model.addAttribute("patrimonios", patrimonios);
+        return "marca/patrimonios";
+    }
+
 
 
 }
